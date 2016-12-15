@@ -15,8 +15,8 @@
                 <RadioButton id="rbKNN" layoutX="9.0" layoutY="97.0" mnemonicParsing="false" text="KNN" />
                 <Button layoutX="103.0" layoutY="154.0" mnemonicParsing="false" onAction="#baslatAction" text="Başlat" />
                 <Button layoutX="9.0" layoutY="14.0" mnemonicParsing="false" onAction="#dosyaAction" text="*.arff Dosya Aç" />
-                <RadioButton layoutX="8.0" layoutY="77.0" mnemonicParsing="false" text="Naive Bayes" />
-                <RadioButton layoutX="12.0" layoutY="122.0" mnemonicParsing="false" text="RadioButton" />
+                <RadioButton  id="rbBayes" layoutX="8.0" layoutY="77.0" mnemonicParsing="false" text="Naive Bayes" />
+                <RadioButton id="rbSmo" layoutX="12.0" layoutY="122.0" mnemonicParsing="false" text="SMO" />
             </children></AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
             <children>

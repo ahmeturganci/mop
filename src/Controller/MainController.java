@@ -1,6 +1,10 @@
 package Controller;
 
+import Algoritmalar.KNN;
 import Algoritmalar.NB;
+import Algoritmalar.NBNET;
+import Algoritmalar.SMO;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.io.File;
@@ -17,10 +21,20 @@ import weka.core.converters.ConverterUtils;
 public class MainController implements Initializable {
 
     Instances train=null;
+   // ToggleGroup group;
+    RadioButton rbBayes,rbKnn,rbSmo,rbBayesNet;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        rbBayes = new RadioButton();
+        rbKnn = new RadioButton();
+        rbSmo = new RadioButton();
+        rbBayesNet = new RadioButton();
 
+      /* group = new ToggleGroup();
+
+        rbBayes.setToggleGroup(group);
+        rbKnn.setToggleGroup(group);*/
     }
         public void dosyaAction() throws IOException, Exception{
             FileChooser dosyaSec = new FileChooser();
@@ -43,7 +57,35 @@ public class MainController implements Initializable {
             }
         }
         public void baslatAction() throws Exception {
-            NB nb=new NB();
-            nb.naiveBayes(train);
+        if(rbBayes.isSelected())
+        {
+         NB nb=new NB();
+         nb.naiveBayes(train);
+        }
+        else  if(rbKnn.isSelected())
+        {
+        KNN knn = new KNN();
+        knn.KNNAlgoritma(train);
+        }
+        else if(rbSmo.isSelected())
+        {
+        SMO smo = new SMO();
+        smo.SMOAlgoritma(train);
+        }
+        else if(rbBayesNet.isSelected())
+        {
+        NBNET nbn = new NBNET();
+        nbn.NBNETAlgoritma(train);
+        }
+        else
+        {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Uyarı");
+        alert.setContentText("Algoritma şeçimi yapınız.");
+        alert.showAndWait();
+        }
+
+
+
         }
     }
