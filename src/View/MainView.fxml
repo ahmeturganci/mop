@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane fx:controller="Controller.MainController" dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="194.0">
+            <children>
+                <RadioButton id="rbBayes" layoutX="12.0" layoutY="56.0" mnemonicParsing="false" text="Bayes NET" />
+                <RadioButton id="rbKNN" layoutX="9.0" layoutY="97.0" mnemonicParsing="false" text="KNN" />
+                <Button layoutX="103.0" layoutY="154.0" mnemonicParsing="false" onAction="#baslatAction" text="Başlat" />
+                <Button layoutX="9.0" layoutY="14.0" mnemonicParsing="false" onAction="#dosyaAction" text="*.arff Dosya Aç" />
+                <RadioButton layoutX="8.0" layoutY="77.0" mnemonicParsing="false" text="Naive Bayes" />
+                <RadioButton layoutX="12.0" layoutY="122.0" mnemonicParsing="false" text="RadioButton" />
+            </children></AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <children>
+                <TabPane layoutX="-1.0" layoutY="-1.0" prefHeight="390.0" prefWidth="407.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Bilgiler">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                            </content>
+                        </Tab>
+                        <Tab text="Grafikler">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <LineChart prefHeight="171.0" prefWidth="123.0">
+                                            <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                        </LineChart>
+                                        <BarChart layoutX="200.0" prefHeight="171.0" prefWidth="123.0">
+                                            <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                        </BarChart>
+                                        <AreaChart layoutY="165.0" prefHeight="171.0" prefWidth="123.0">
+                                            <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                        </AreaChart>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children></AnchorPane>
+    </items>
+</SplitPane>
