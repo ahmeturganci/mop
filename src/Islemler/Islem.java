@@ -1,15 +1,50 @@
 package Islemler;
 
-import weka.core.Instances;
-
-/**
- * Created by ahmetu on 16.12.2016.
- */
 public class Islem {
-    public String toSummaryString;
-    public String fMeasure;
-    public String precision;
-    public String  recall;
+    private String toSummaryString;
+    private String fMeasure;
+    private String precision;
+    private String  recall;
+    private static Islem islem;
+    private Islem(){
 
+    }
+    public static Islem getIslem(){
+        if (islem==null)
+            islem=new Islem();
 
+        return  islem;
+    }
+
+    public String getToSummaryString() {
+        return toSummaryString;
+    }
+
+    public void setToSummaryString(String toSummaryString) {
+        this.toSummaryString = toSummaryString;
+    }
+
+    public String getfMeasure() {
+        return fMeasure;
+    }
+
+    public void setfMeasure(String fMeasure) {
+        this.fMeasure = fMeasure;
+    }
+
+    public String getPrecision() {
+        return precision;
+    }
+
+    public void setPrecision(String precision) {
+        this.precision = precision;
+    }
+
+    public String getRecall() {
+        return recall;
+    }
+
+    public void setRecall(String recall) {
+        this.recall = recall;
+    }
 }

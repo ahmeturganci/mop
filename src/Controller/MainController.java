@@ -36,9 +36,18 @@ public class MainController implements Initializable {
 
     @FXML
     private TextArea txtTest;
+    @FXML
+    private TextArea txtaSummary;
+    @FXML
+    private Label lblMeasure;
+    @FXML
+    private Label lblPrecision;
+    @FXML
+    private Label lblRecall;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        islem=Islem.getIslem();
     }
 
     public void dosyaAction() throws IOException, Exception {
@@ -58,13 +67,15 @@ public class MainController implements Initializable {
         if (rbBayes.isSelected()) {
             NB nb = new NB();
             nb.naiveBayes(train);
-            islem = new Islem();
-            txtTest.setText(islem.toSummaryString);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            //txtTest.setText(islem.getToSummaryString());
+            txtaSummary.setText(islem.getToSummaryString());
+            lblMeasure.setText(islem.getfMeasure());
+            lblPrecision.setText(islem.getPrecision());
+            lblRecall.setText(islem.getRecall());
+           /* Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("BİLGİ");
-            alert.setHeaderText(islem.toSummaryString);
-            alert.showAndWait();
+            alert.setHeaderText(islem.getToSummaryString());
+            alert.showAndWait();*/
 
         } else if (rbKnn.isSelected()) {
             KNN knn = new KNN();
