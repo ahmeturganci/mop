@@ -17,7 +17,7 @@ public class KNN {
         eval.crossValidateModel(ibk, train, 10, new Random(1));
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("HATA");
+        alert.setTitle("BİLGİ");
         alert.setHeaderText(eval.fMeasure(1)+" "+eval.precision(1)+" "+eval.recall(1));
         alert.setContentText(eval.toSummaryString());
         alert.showAndWait();
