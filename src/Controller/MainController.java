@@ -4,6 +4,7 @@ import Algoritmalar.KNN;
 import Algoritmalar.NB;
 import Algoritmalar.NBNET;
 import Algoritmalar.SMO;
+import Islemler.Islem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -22,6 +23,7 @@ public class MainController implements Initializable {
 
     Instances train = null;
     File dosya = null;
+    Islem islem;
     // ToggleGroup group;
     @FXML
     private RadioButton rbBayes;
@@ -31,6 +33,9 @@ public class MainController implements Initializable {
     private RadioButton rbSmo;
     @FXML
     private RadioButton rbBayesNet;
+
+    @FXML
+    private TextArea txtTest;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,6 +58,14 @@ public class MainController implements Initializable {
         if (rbBayes.isSelected()) {
             NB nb = new NB();
             nb.naiveBayes(train);
+            islem = new Islem();
+            txtTest.setText(islem.toSummaryString);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("BİLGİ");
+            alert.setHeaderText(islem.toSummaryString);
+            alert.showAndWait();
+
         } else if (rbKnn.isSelected()) {
             KNN knn = new KNN();
             knn.KNNAlgoritma(train);
