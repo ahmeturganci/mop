@@ -33,9 +33,8 @@ public class MainController implements Initializable {
     private RadioButton rbSmo;
     @FXML
     private RadioButton rbBayesNet;
-
     @FXML
-    private TextArea txtTest;
+    private TextArea txtAciklama;
     @FXML
     private TextArea txtaSummary;
     @FXML
@@ -72,20 +71,31 @@ public class MainController implements Initializable {
             lblMeasure.setText(islem.getfMeasure());
             lblPrecision.setText(islem.getPrecision());
             lblRecall.setText(islem.getRecall());
-           /* Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("BİLGİ");
-            alert.setHeaderText(islem.getToSummaryString());
-            alert.showAndWait();*/
-
+            txtAciklama.setText("Naïve Bayes Sınıflandırıcı adını İngiliz matematikçi Thomas Bayes'ten (yak. 1701 - 7 Nisan 1761) alır.  Naïve Bayes Sınıflandırıcı Örüntü tanıma problemine ilk bakışta oldukça kısıtlayıcı görülen bir önerme ile kullanılabilen olasılıkcı bir yaklaşımdır. Bu önerme örüntü tanıma da kullanılacak her bir tanımlayıcı öznitelik ya da parametrenin istatistik açıdan bağımsız olması gerekliliğidir. Her ne kadar  bu önerme Naive Bayes sınıflandırıcının kullanım alanını kısıtlasa da, genelde istatistik bağımsızlık  koşulu esnetilerek kullanıldığında da daha karmaşık Yapay sinir ağları gibi metotlarla karşılaştırabilir sonuçlar vermektedir. Bir Naive Bayes sınıflandırıcı, her özniteliğin birbirinden koşulsal bağımsız olduğu ve öğrenilmek istenen kavramın tüm bu özniteliklere koşulsal bağlı olduğu bir Bayes ağı olarak da düşünülebilir.");
         } else if (rbKnn.isSelected()) {
             KNN knn = new KNN();
             knn.KNNAlgoritma(train);
+            txtaSummary.setText(islem.getToSummaryString());
+            lblMeasure.setText(islem.getfMeasure());
+            lblPrecision.setText(islem.getPrecision());
+            lblRecall.setText(islem.getRecall());
+            txtAciklama.setText("KNN");
         } else if (rbSmo.isSelected()) {
             SMO smo = new SMO();
             smo.SMOAlgoritma(train);
+            txtaSummary.setText(islem.getToSummaryString());
+            lblMeasure.setText(islem.getfMeasure());
+            lblPrecision.setText(islem.getPrecision());
+            lblRecall.setText(islem.getRecall());
+            txtAciklama.setText("SMO");
         } else if (rbBayesNet.isSelected()) {
             NBNET nbn = new NBNET();
             nbn.NBNETAlgoritma(train);
+            txtaSummary.setText(islem.getToSummaryString());
+            lblMeasure.setText(islem.getfMeasure());
+            lblPrecision.setText(islem.getPrecision());
+            lblRecall.setText(islem.getRecall());
+            txtAciklama.setText("NBNET");
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Uyarı");
