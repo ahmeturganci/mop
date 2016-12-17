@@ -83,30 +83,14 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                     <children>
-                                        <LineChart prefHeight="171.0" prefWidth="123.0">
+                                        <LineChart fx:id="grafik" prefHeight="359.0" prefWidth="406.0">
                                             <xAxis>
-                                                <CategoryAxis side="BOTTOM" />
+                                                <CategoryAxis side="BOTTOM" fx:id="x" />
                                             </xAxis>
                                             <yAxis>
-                                                <NumberAxis side="LEFT" />
+                                                <NumberAxis fx:id="y" side="LEFT" />
                                             </yAxis>
                                         </LineChart>
-                                        <BarChart layoutX="200.0" prefHeight="171.0" prefWidth="123.0">
-                                            <xAxis>
-                                                <CategoryAxis side="BOTTOM" />
-                                            </xAxis>
-                                            <yAxis>
-                                                <NumberAxis side="LEFT" />
-                                            </yAxis>
-                                        </BarChart>
-                                        <AreaChart layoutY="165.0" prefHeight="171.0" prefWidth="123.0">
-                                            <xAxis>
-                                                <CategoryAxis side="BOTTOM" />
-                                            </xAxis>
-                                            <yAxis>
-                                                <NumberAxis side="LEFT" />
-                                            </yAxis>
-                                        </AreaChart>
                                     </children>
                                 </AnchorPane>
                             </content>
