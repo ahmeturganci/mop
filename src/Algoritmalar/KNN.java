@@ -24,6 +24,7 @@ public class KNN {
         i.setfMeasure(eval.fMeasure(1)+"");
         i.setPrecision(eval.precision(1)+"");
         i.setRecall(eval.recall(1)+"");
+        i.setKappa(eval.kappa());
 
         /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("BİLGİ");

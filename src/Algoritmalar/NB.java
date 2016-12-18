@@ -21,6 +21,7 @@ public class NB
         i.setfMeasure(eval.fMeasure(1)+"");
         i.setPrecision(eval.precision(1)+"");
         i.setRecall(eval.recall(1)+"");
+        i.setKappa(eval.kappa());
         /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("BİLGİ");
        // alert.setHeaderText(eval.fMeasure(1)+" "+" "+eval.precision(1)+" : precision"+eval.recall(1));

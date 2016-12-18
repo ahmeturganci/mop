@@ -17,11 +17,11 @@ public class NBNET {
         bnet.buildClassifier(train);
         Evaluation eval=new Evaluation(train);
         eval.crossValidateModel(bnet, train, 10, new Random(1));
-
         i.setToSummaryString(eval.toSummaryString());
         i.setfMeasure(eval.fMeasure(1)+"");
         i.setPrecision(eval.precision(1)+"");
         i.setRecall(eval.recall(1)+"");
+        i.setKappa(eval.kappa());
 
         /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("BİLGİ");
