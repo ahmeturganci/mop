@@ -6,6 +6,7 @@ import Algoritmalar.NBNET;
 import Algoritmalar.SMO;
 import Islemler.Islem;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -58,14 +59,14 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        islem=Islem.getIslem();
+        islem = Islem.getIslem();
     }
 
     public void dosyaAction() throws IOException {
-        bayesSeries=new XYChart.Series();
-        naiveSeries=new XYChart.Series();
-        knnSeries=new XYChart.Series();
-        smoSeries=new XYChart.Series();
+        bayesSeries = new XYChart.Series();
+        naiveSeries = new XYChart.Series();
+        knnSeries = new XYChart.Series();
+        smoSeries = new XYChart.Series();
 
         FileChooser dosyaSec = new FileChooser();
         dosyaSec.setTitle("arff Uzantılı Dosya Aç");
@@ -77,8 +78,12 @@ public class MainController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        System.out.println(train.classAttribute().name());
+        //System.out.println(train.numAttributes());
+        //System.out.println(train.numClasses());
+        //System.out.println(train.numInstances());
     }
+
     public void olustur() throws Exception {
         ConverterUtils.DataSource source;
         source = new ConverterUtils.DataSource(dosya.getAbsolutePath());
@@ -94,25 +99,25 @@ public class MainController implements Initializable {
             nb.naiveBayes(train);
             //txtTest.setText(islem.getToSummaryString());
             yazdir("Naïve Bayes Sınıflandırıcı adını İngiliz matematikçi Thomas Bayes'ten (yak. 1701 - 7 Nisan 1761) alır.  Naïve Bayes Sınıflandırıcı Örüntü tanıma problemine ilk bakışta oldukça kısıtlayıcı görülen bir önerme ile kullanılabilen olasılıkcı bir yaklaşımdır. Bu önerme örüntü tanıma da kullanılacak her bir tanımlayıcı öznitelik ya da parametrenin istatistik açıdan bağımsız olması gerekliliğidir. Her ne kadar  bu önerme Naive Bayes sınıflandırıcının kullanım alanını kısıtlasa da, genelde istatistik bağımsızlık  koşulu esnetilerek kullanıldığında da daha karmaşık Yapay sinir ağları gibi metotlarla karşılaştırabilir sonuçlar vermektedir. Bir Naive Bayes sınıflandırıcı, her özniteliğin birbirinden koşulsal bağımsız olduğu ve öğrenilmek istenen kavramın tüm bu özniteliklere koşulsal bağlı olduğu bir Bayes ağı olarak da düşünülebilir.\n");
-            bayesSeries.getData().add(new XYChart.Data("Bayes",islem.getKappa()));
+            bayesSeries.getData().add(new XYChart.Data("Bayes", islem.getKappa()));
             grafikAlgoritma.getData().addAll(bayesSeries);
         } else if (rbKnn.isSelected()) {
             KNN knn = new KNN();
             knn.KNNAlgoritma(train);
             yazdir("KNN");
-            knnSeries.getData().add(new XYChart.Data("Knn",islem.getKappa()));
+            knnSeries.getData().add(new XYChart.Data("Knn", islem.getKappa()));
             grafikAlgoritma.getData().addAll(knnSeries);
         } else if (rbSmo.isSelected()) {
             SMO smo = new SMO();
             smo.SMOAlgoritma(train);
             yazdir("SMO");
-            smoSeries.getData().add(new XYChart.Data("Smo",islem.getKappa()));
+            smoSeries.getData().add(new XYChart.Data("Smo", islem.getKappa()));
             grafikAlgoritma.getData().addAll(smoSeries);
         } else if (rbBayesNet.isSelected()) {
             NBNET nbn = new NBNET();
             nbn.NBNETAlgoritma(train);
             yazdir("NBNET");
-            naiveSeries.getData().add(new XYChart.Data("Naive",islem.getKappa()));
+            naiveSeries.getData().add(new XYChart.Data("Naive", islem.getKappa()));
             grafikAlgoritma.getData().addAll(naiveSeries);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -121,33 +126,77 @@ public class MainController implements Initializable {
             alert.showAndWait();
         }
     }
-    public void yazdir(String aciklama){
-        txtaSummary.setText(islem.getToSummaryString()+"\n"+"Fmeasure :"+islem.getfMeasure()
-                +"\n"+"Precision :"+islem.getPrecision()+"\n"+"Recall :"+islem.getRecall());
+
+    public void yazdir(String aciklama) {
+        txtaSummary.setText(islem.getToSummaryString() + "\n" + "Fmeasure : " + islem.getfMeasure()
+                + "\n" + "Precision : " + islem.getPrecision() + "\n" + "Recall : " + islem.getRecall()
+                + "\n\nClass Attiribute : " + train.classAttribute().toString().substring(18, train.classAttribute().toString().length() - 1));
         txtAciklama.setText(aciklama);
 
     }
 
-    public void attrListDoldur(){
+    public void attrListDoldur() {
         listAttr.getItems().clear();
-        ObservableList items=listAttr.getItems();
-        for (int i=0; i<train.numAttributes(); i++) {
-                items.add(train.attribute(i).name());
+        ObservableList items = listAttr.getItems();
+        for (int i = 0; i < train.numAttributes(); i++) {
+            items.add(train.attribute(i).name());
         }
     }
 
     public void handleMouseClick(MouseEvent arg0) {
         attrTxtDoldur(listAttr.getSelectionModel().getSelectedIndex());
     }
-    public void attrTxtDoldur(int i){
-        //txtAttr.setText("");
-        txtAttr.setText("Name : "+train.attribute(i).name()
-                +"\nType : "+train.attribute(i).type()
-                +"\nDistinct : "+train.attributeStats(i).distinctCount
-                +"\nMissing : "+train.attributeStats(i).missingCount
-                +"\nUnique : "+train.attributeStats(i).uniqueCount);
 
+    public void attrTxtDoldur(int i) {
+        //txtAttr.setText("");
+        txtAttr.setText("Name : " + train.attribute(i).name()
+                + "\nType : " + train.attribute(i).type()
+                + "\nDistinct : " + train.attributeStats(i).distinctCount
+                + "\nMissing : " + train.attributeStats(i).missingCount
+                + "\nUnique : " + train.attributeStats(i).uniqueCount);
+        XYChart.Series series = new XYChart.Series();
+        series.getData().add(new XYChart.Data("Distinct", train.attributeStats(i).distinctCount));
+        series.getData().add(new XYChart.Data("Missing", train.attributeStats(i).missingCount));
+        series.getData().add(new XYChart.Data("Unique", train.attributeStats(i).uniqueCount));
+        grafikAttr.getData().addAll(series);
     }
+
+    @FXML
+    public void radioBayesNET(ActionEvent event) {
+        if (rbBayesNet.isSelected()) {
+            rbKnn.setSelected(false);
+            rbSmo.setSelected(false);
+            rbBayes.setSelected(false);
+        }
+    }
+
+    @FXML
+    public void radioKNN(ActionEvent event) {
+        if (rbKnn.isSelected()) {
+            rbSmo.setSelected(false);
+            rbBayes.setSelected(false);
+            rbBayesNet.setSelected(false);
+        }
+    }
+
+    @FXML
+    public void radioNaive(ActionEvent event) {
+        if (rbBayes.isSelected()) {
+            rbKnn.setSelected(false);
+            rbSmo.setSelected(false);
+            rbBayesNet.setSelected(false);
+        }
+    }
+
+    @FXML
+    public void radioSMO(ActionEvent event) {
+        if (rbSmo.isSelected()) {
+            rbBayes.setSelected(false);
+            rbBayesNet.setSelected(false);
+            rbKnn.setSelected(false);
+        }
+    }
+
 }
 
 

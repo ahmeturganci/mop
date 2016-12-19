@@ -13,19 +13,19 @@
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="194.0" style="-fx-background-size: 15;">
             <children>
-                <RadioButton fx:id="rbBayesNet" contentDisplay="RIGHT" layoutX="18.0" layoutY="54.0" mnemonicParsing="false" text="Bayes NET">
+                <RadioButton fx:id="rbBayesNet" contentDisplay="RIGHT" layoutX="18.0" layoutY="54.0" mnemonicParsing="false" onAction="#radioBayesNET" text="Bayes NET">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></RadioButton>
-                <RadioButton fx:id="rbKnn" contentDisplay="RIGHT" layoutX="19.0" layoutY="120.0" mnemonicParsing="false" text="KNN">
+                <RadioButton fx:id="rbKnn" contentDisplay="RIGHT" layoutX="19.0" layoutY="120.0" mnemonicParsing="false" onAction="#radioKNN" text="KNN">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></RadioButton>
-                <RadioButton fx:id="rbBayes" contentDisplay="RIGHT" layoutX="18.0" layoutY="87.0" mnemonicParsing="false" text="Naive Bayes">
+                <RadioButton fx:id="rbBayes" contentDisplay="RIGHT" layoutX="18.0" layoutY="87.0" mnemonicParsing="false" onAction="#radioNaive" text="Naive Bayes">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></RadioButton>
-                <RadioButton fx:id="rbSmo" layoutX="18.0" layoutY="153.0" mnemonicParsing="false" text="SMO">
+                <RadioButton fx:id="rbSmo" layoutX="18.0" layoutY="153.0" mnemonicParsing="false" onAction="#radioSMO" text="SMO">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></RadioButton>
