@@ -5,7 +5,7 @@ public class Islem {
     private String fMeasure;
     private String precision;
     private String  recall;
-    private double kappa;
+    private double crrRate;
     private static Islem islem;
     private Islem(){
 
@@ -49,11 +49,11 @@ public class Islem {
         this.recall = recall;
     }
 
-    public double getKappa() {
-        return kappa;
+    public double getCrrRate() {
+        return crrRate;
     }
 
-    public void setKappa(double kappa) {
-        this.kappa = kappa;
+    public void setCrrRate(double crrRate) {
+        this.crrRate = crrRate;
     }
 }

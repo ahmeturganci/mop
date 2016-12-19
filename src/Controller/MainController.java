@@ -46,6 +46,8 @@ public class MainController implements Initializable {
     @FXML
     private LineChart<?, ?> grafikAttr;
 
+    @FXML
+    private TextArea txtK;
 
     @FXML
     private ListView<?> listAttr;
@@ -60,6 +62,8 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         islem = Islem.getIslem();
+        txtK.setText("1");
+        txtK.setEditable(false);
     }
 
     public void dosyaAction() throws IOException {
@@ -99,26 +103,34 @@ public class MainController implements Initializable {
             nb.naiveBayes(train);
             //txtTest.setText(islem.getToSummaryString());
             yazdir("Naïve Bayes Sınıflandırıcı adını İngiliz matematikçi Thomas Bayes'ten (yak. 1701 - 7 Nisan 1761) alır.  Naïve Bayes Sınıflandırıcı Örüntü tanıma problemine ilk bakışta oldukça kısıtlayıcı görülen bir önerme ile kullanılabilen olasılıkcı bir yaklaşımdır. Bu önerme örüntü tanıma da kullanılacak her bir tanımlayıcı öznitelik ya da parametrenin istatistik açıdan bağımsız olması gerekliliğidir. Her ne kadar  bu önerme Naive Bayes sınıflandırıcının kullanım alanını kısıtlasa da, genelde istatistik bağımsızlık  koşulu esnetilerek kullanıldığında da daha karmaşık Yapay sinir ağları gibi metotlarla karşılaştırabilir sonuçlar vermektedir. Bir Naive Bayes sınıflandırıcı, her özniteliğin birbirinden koşulsal bağımsız olduğu ve öğrenilmek istenen kavramın tüm bu özniteliklere koşulsal bağlı olduğu bir Bayes ağı olarak da düşünülebilir.\n");
-            bayesSeries.getData().add(new XYChart.Data("Bayes", islem.getKappa()));
+            bayesSeries.getData().add(new XYChart.Data("Naive\n"+islem.getCrrRate(), islem.getCrrRate()));
+            System.out.println(islem.getCrrRate());
             grafikAlgoritma.getData().addAll(bayesSeries);
         } else if (rbKnn.isSelected()) {
-            KNN knn = new KNN();
-            knn.KNNAlgoritma(train);
-            yazdir("KNN");
-            knnSeries.getData().add(new XYChart.Data("Knn", islem.getKappa()));
-            grafikAlgoritma.getData().addAll(knnSeries);
+            int k=Integer.parseInt(txtK.getText());
+            System.out.println(k);
+            if(k>=1 && k%2 !=0) {
+                KNN knn = new KNN();
+                knn.KNNAlgoritma(train, k);
+                yazdir("KNN");
+                knnSeries.getData().add(new XYChart.Data("Knn\n"+islem.getCrrRate(), islem.getCrrRate()));
+                grafikAlgoritma.getData().addAll(knnSeries);
+                System.out.println(islem.getCrrRate());
+            }
         } else if (rbSmo.isSelected()) {
             SMO smo = new SMO();
             smo.SMOAlgoritma(train);
             yazdir("SMO");
-            smoSeries.getData().add(new XYChart.Data("Smo", islem.getKappa()));
+            smoSeries.getData().add(new XYChart.Data("Smo\n"+islem.getCrrRate(), islem.getCrrRate()));
             grafikAlgoritma.getData().addAll(smoSeries);
+            System.out.println(islem.getCrrRate());
         } else if (rbBayesNet.isSelected()) {
             NBNET nbn = new NBNET();
             nbn.NBNETAlgoritma(train);
             yazdir("NBNET");
-            naiveSeries.getData().add(new XYChart.Data("Naive", islem.getKappa()));
+            naiveSeries.getData().add(new XYChart.Data("BayesNET\n"+islem.getCrrRate(), islem.getCrrRate()));
             grafikAlgoritma.getData().addAll(naiveSeries);
+            System.out.println(islem.getCrrRate());
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Uyarı");
@@ -167,6 +179,7 @@ public class MainController implements Initializable {
             rbKnn.setSelected(false);
             rbSmo.setSelected(false);
             rbBayes.setSelected(false);
+            txtK.setEditable(false);
         }
     }
 
@@ -176,6 +189,7 @@ public class MainController implements Initializable {
             rbSmo.setSelected(false);
             rbBayes.setSelected(false);
             rbBayesNet.setSelected(false);
+            txtK.setEditable(true);
         }
     }
 
@@ -185,6 +199,7 @@ public class MainController implements Initializable {
             rbKnn.setSelected(false);
             rbSmo.setSelected(false);
             rbBayesNet.setSelected(false);
+            txtK.setEditable(false);
         }
     }
 
@@ -194,6 +209,7 @@ public class MainController implements Initializable {
             rbBayes.setSelected(false);
             rbBayesNet.setSelected(false);
             rbKnn.setSelected(false);
+            txtK.setEditable(false);
         }
     }
 
