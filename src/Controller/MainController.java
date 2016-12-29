@@ -112,7 +112,12 @@ public class MainController implements Initializable {
             if(k>=1 && k%2 !=0) {
                 KNN knn = new KNN();
                 knn.KNNAlgoritma(train, k);
-                yazdir("KNN");
+                yazdir("K-NN Algoritması Sınıflandırma işleminde K değeri bakılacak eleman sayısını belirler. Her ne kadar KNN algoritması k-means algoritmasındaki benzer özellikler taşısa da büyük farklılıklar da içermektedir. KNN algoritması bir eğitim verisi içerirken k-means algoritması bir eğitim verisi içermez. Yeni bir değer geldiğinde K değerine mesafeler hesaplanır ve yeni değer bir kümeye ilave edilir. Mesafe hesaplama işleminde ise k-means ve hiyerarşik kümeleme de kullanılan öklid uzaklığı, manhattan uzaklığı gibi mesafe hesaplama yöntemleri kullanılabilir. Bu örneğimizde yine öklid uzaklığı kullanılacaktır. Bu algoritma beş adımdan oluşur.\n" +
+                        "1.\tÖncelikle K değeri belirlenir.\n" +
+                        "2.\tDiğer nesnelerden hedef nesneye olan öklit uzaklıkları hesaplanır.\n" +
+                        "3.\tUzaklıklar sıralanır ve en minimum uzaklığa bağlı olarak en yakın komşular bulunur.\n" +
+                        "4.\tEn yakın komşu kategorileri toplanır.\n" +
+                        "5.\tEn uygun komşu kategorisi seçilir.\n");
                 knnSeries.getData().add(new XYChart.Data("Knn\n"+islem.getCrrRate(), islem.getCrrRate()));
                 grafikAlgoritma.getData().addAll(knnSeries);
                 System.out.println(islem.getCrrRate());
@@ -120,14 +125,14 @@ public class MainController implements Initializable {
         } else if (rbSmo.isSelected()) {
             SMO smo = new SMO();
             smo.SMOAlgoritma(train);
-            yazdir("SMO");
+            yazdir("SMO Birden fazla kümeye, veriyi bölmeye yarar. Sequential Minimal Optimisation kelimelerinin baş harflerinden oluşan SMO, esas itibariyle Support Vector kullanan bir algoritmadır.");
             smoSeries.getData().add(new XYChart.Data("Smo\n"+islem.getCrrRate(), islem.getCrrRate()));
             grafikAlgoritma.getData().addAll(smoSeries);
             System.out.println(islem.getCrrRate());
         } else if (rbBayesNet.isSelected()) {
             NBNET nbn = new NBNET();
             nbn.NBNETAlgoritma(train);
-            yazdir("NBNET");
+            yazdir("Bayes Ağları / Bayesian Network\tBu yazının amacı, literatürde naif Bayes (Naive Bayes) olarak bilinen algoritmanın, sınıflandırma  için kullanılma şeklini açıklamaktır. Herhangi bir sınıflandırma probleminde olduğu gibi, amacımız birden fazla özelliği taşıyan bir yöney (vektör) kullanarak verilen bilgilerden bir eğitim oluşturmak ve bu eğitim neticesinde gelen yeni verileri doğru bir şekilde sınıflandırmaktır.");
             naiveSeries.getData().add(new XYChart.Data("BayesNET\n"+islem.getCrrRate(), islem.getCrrRate()));
             grafikAlgoritma.getData().addAll(naiveSeries);
             System.out.println(islem.getCrrRate());

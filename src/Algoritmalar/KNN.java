@@ -23,7 +23,7 @@ public class KNN {
         i.setfMeasure(eval.fMeasure(1)+"");
         i.setPrecision(eval.precision(1)+"");
         i.setRecall(eval.recall(1)+"");
-        i.setCrrRate(100-eval.errorRate()*100);
+        i.setCrrRate(eval.pctCorrect());
 
         /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("BİLGİ");

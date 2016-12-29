@@ -16,12 +16,11 @@ public class NB
         nb.buildClassifier(train);
         Evaluation eval=new Evaluation(train);
         eval.crossValidateModel(nb, train, 10, new Random(1));
-
-        i.setToSummaryString(eval.toSummaryString());
+        i.setToSummaryString(eval.toSummaryString()+"\n"+eval.toClassDetailsString()+"\n"+eval.toMatrixString());
         i.setfMeasure(eval.fMeasure(1)+"");
         i.setPrecision(eval.precision(1)+"");
         i.setRecall(eval.recall(1)+"");
-        i.setCrrRate(100-eval.errorRate()*100);
+        i.setCrrRate(eval.pctCorrect());
         /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("BİLGİ");
        // alert.setHeaderText(eval.fMeasure(1)+" "+" "+eval.precision(1)+" : precision"+eval.recall(1));
